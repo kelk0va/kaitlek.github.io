@@ -1,4 +1,3 @@
-// Browser Save Decryptor Class
 class BrowserSaveDecryptor {
     constructor() {
         this.key = 'UKu52ePUBwetZ9wNX88o54dnfKRu0T1l';
@@ -43,7 +42,7 @@ class BrowserSaveDecryptor {
     }
 }
 
-// Completion Tracker Class
+
 class CompletionTracker {
     constructor() {
         this.saveData = null;
@@ -240,7 +239,7 @@ class CompletionTracker {
     }
 }
 
-// DOM Elements
+
 const dropZone = document.getElementById('dropZone');
 const fileInput = document.getElementById('fileInput');
 const loading = document.getElementById('loading');
@@ -252,11 +251,11 @@ const completionSection = document.getElementById('completionSection');
 const checkCompletionBtn = document.getElementById('checkCompletionBtn');
 const completionResults = document.getElementById('completionResults');
 
-// Initialize decryptor and tracker
+
 const decryptor = new BrowserSaveDecryptor();
 const tracker = new CompletionTracker();
 
-// Hide all messages initially
+
 function hideAllMessages() {
     errorMessage.style.display = 'none';
     result.style.display = 'none';
@@ -264,7 +263,7 @@ function hideAllMessages() {
     loading.style.display = 'none';
 }
 
-// Process file
+
 async function processFile(file) {
     hideAllMessages();
     loading.style.display = 'block';
@@ -285,7 +284,7 @@ async function processFile(file) {
     }
 }
 
-// Check completion
+
 function checkCompletion() {
     try {
         if (typeof statsResults !== 'undefined') { statsResults.innerHTML = ''; }
@@ -370,7 +369,7 @@ function checkCompletion() {
                     </div>` : ''}
             `;
             
-            // Add unfreed fleas list if there are any
+            
             if (unfreedFleas.length > 0) {
                 html += `
                     <div class="completion-item">
@@ -379,7 +378,7 @@ function checkCompletion() {
                             <div style="margin-top: 10px;">
                 `;
                 
-                // Group fleas by area for better organization
+                
                 const fleasByArea = {};
                 unfreedFleas.forEach(flea => {
                     if (!fleasByArea[flea.area]) {
@@ -452,7 +451,7 @@ function checkCompletion() {
     }
 }
 
-// Copy to clipboard
+
 copyBtn.addEventListener('click', async () => {
     try {
         await navigator.clipboard.writeText(jsonOutput.textContent);
@@ -463,10 +462,10 @@ copyBtn.addEventListener('click', async () => {
     }
 });
 
-// Check completion button
+
 checkCompletionBtn.addEventListener('click', checkCompletion);
 
-// Stats helpers
+
 function findValueByKeyInsensitive(obj, targetKey) {
     const keyLower = targetKey.toLowerCase();
     const stack = [obj];
@@ -529,17 +528,17 @@ function showStats() {
     }
 }
 
-// Stats button
+
 const checkStatsBtn = document.getElementById('checkStatsBtn');
 const statsResults = document.getElementById('statsResults');
 checkStatsBtn.addEventListener('click', showStats);
 
-// Flea tracking button
-const checkFleasBtn = document.getElementById('checkFleasBtn');
-const fleaResults = document.getElementById('fleaResults');
-checkFleasBtn.addEventListener('click', showFleaTracking);
 
-// Show flea tracking information
+
+const fleaResults = document.getElementById('fleaResults');
+
+
+
 function showFleaTracking() {
     try {
         if (typeof completionResults !== 'undefined') { completionResults.innerHTML = ''; }
@@ -555,7 +554,7 @@ function showFleaTracking() {
         const allFleas = getAllFleaLocations();
         const fleaCounts = getFleaCounts(saveData);
         
-        // Calculate stats
+        
         const totalFleas = allFleas.length;
         const freedFleas = totalFleas - unfreedFleas.length;
         const unfreedCount = unfreedFleas.length;
@@ -611,7 +610,7 @@ function showFleaTracking() {
                     <div class="category-title">🔍 Unfreed Fleas - Location Guide</div>
             `;
 
-            // Group fleas by area
+            
             const fleasByArea = {};
             unfreedFleas.forEach(flea => {
                 if (!fleasByArea[flea.area]) {
@@ -620,7 +619,7 @@ function showFleaTracking() {
                 fleasByArea[flea.area].push(flea);
             });
 
-            // Display fleas by area
+            
             Object.entries(fleasByArea).forEach(([area, fleas]) => {
                 html += `
                     <div style="margin-bottom: 20px; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 8px; border-left: 4px solid #ff6b6b;">
@@ -656,7 +655,7 @@ function showFleaTracking() {
     }
 }
 
-// Flea counters
+
 function countFleasRecursive(obj, result) {
     if (!obj || typeof obj !== 'object') return;
     for (const [k, v] of Object.entries(obj)) {
@@ -682,7 +681,7 @@ function getFleaCounts(saveData) {
     return { total: totalWithGiant, found: foundWithGiant, giantPresent: result.giantFoundPresent, giantTamed: result.giantFound };
 }
 
-// Drop zone events
+
 dropZone.addEventListener('click', () => fileInput.click());
 dropZone.addEventListener('dragover', (e) => {
     e.preventDefault();
@@ -700,14 +699,14 @@ dropZone.addEventListener('drop', (e) => {
     }
 });
 
-// File input change
+
 fileInput.addEventListener('change', (e) => {
     if (e.target.files.length > 0) {
         processFile(e.target.files[0]);
     }
 });
 
-// Initialize
+
 hideAllMessages();
 
 

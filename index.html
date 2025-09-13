@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hollow Knight Silksong Save Decryptor</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Hollow Knight Silksong</h1>
+        <p class="subtitle">Save File Explorer</p>
+        
+        <div class="drop-zone" id="dropZone">
+            <div class="drop-zone-icon">📁</div>
+            <div class="drop-zone-text">Drop your save file here</div>
+            <div class="drop-zone-subtext">or click to browse</div>
+        </div>
+        
+        <input type="file" id="fileInput" class="file-input" accept=".dat,.save">
+        
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Loading save file...</p>
+        </div>
+        
+        <div class="error" id="errorMessage"></div>
+        
+        <div class="completion-section" id="completionSection">
+            <div class="completion-header">
+                🎯 Game Completion Tracker
+            </div>
+            <div class="completion-content">
+                <div class="button-group">
+                    <button class="btn" id="checkCompletionBtn">📊 Check Main Completion %</button>
+                    <button class="btn" id="checkStatsBtn">🕒 Show Stats</button>
+                </div>
+                <div id="completionResults"></div>
+                <div id="statsResults"></div>
+            </div>
+        </div>
+        
+        <div class="result" id="result">
+            <div class="result-header">
+                <span>Decrypted Save Data (JSON)</span>
+                <button class="copy-btn" id="copyBtn">📋 Copy</button>
+            </div>
+            <div class="json-output" id="jsonOutput"></div>
+        </div>
+    </div>
+
+    <script src="flea_location_dictionary.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
